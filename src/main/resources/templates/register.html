@@ -1,57 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <title>Agon - Code Battles</title>
-    <!--<link rel="icon" type="image/x-icon" href="/images/condelulogo.ico">-->
-    <meta name="theme-color" content="#ffffff" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <!-- Scrollbar Styling
-    <style>
-        html.scroll-hide *::-webkit-scrollbar-thumb {
-            background-color: rgb(4.25, 4.25, 4.25);
-        }
-        html.scroll-hide *::-webkit-scrollbar-track {
-            background-color: rgb(4.25, 4.25, 4.25);
-        }
-    </style>
-    -->
-    <!-- Favicon
-    <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon/favicon-16x16.png">
-    <link rel="manifest" href="/images/favicon/site.webmanifest">
-    -->
-
-    <!-- CSRF stuff -->
-    <meta name="_csrf" th:content="${_csrf.token}">
-    <meta name="_csrf_header" th:content="${_csrf.headerName}">
+    <th:block th:replace="~{fragments/headCommon :: sharedHead}"></th:block>
+    <th:block th:replace="~{fragments/backgroundAnim :: headScript}"></th:block>
+    <link rel="stylesheet" th:href="@{/css/register.css}">
+    <script defer src="/js/register.js"></script>
 </head>
-
 
 <body>
 
-<p th:if="${param.error}">
-    Invalid username or password.
-</p>
+<th:block th:replace="~{fragments/backgroundAnim :: bodyBlock}"></th:block>
 
-<p th:if="${param.logout}">
-    You have been logged out.
-</p>
+<div id="register-tile">
+    <form id="register-form" method="post" class="frostedLayer">
+        <p th:if="${param.error}">
+            The username selected already exists.
+        </p>
 
-<form th:action="@{/login}" method="post">
-    <input type="text"
-           name="username"
-           placeholder="Username"
-           required>
+        <input id="register-username"
+               type="text"
+               name="username"
+               placeholder="Username"
+               minlength="2"
+               maxlength="32"
+               required>
 
-    <input type="password"
-           name="password"
-           placeholder="Password"
-           required>
+        <input id="register-password"
+               type="password"
+               name="password"
+               placeholder="Password"
+               minlength="8"
+               maxlength="128"
+               required>
 
-    <button type="submit">Login</button>
-</form>
+        <input id="register-confirm-password"
+               type="password"
+               name="confirmpassword"
+               placeholder="Confirm password"
+               minlength="8"
+               maxlength="128"
+               required>
+
+        <button type="submit">Register</button>
+    </form>
+</div>
+
+
 
 </body>
 </html>

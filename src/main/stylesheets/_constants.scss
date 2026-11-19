@@ -1,0 +1,187 @@
+$primary: #0b1e1e;
+$primary-lightened: lighten($primary, 5%);
+$secondary: #f0f9f9;
+$accent: #df0000;
+
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wdth,wght@0,75..100,300..800;1,75..100,300..800&display=swap');
+
+* {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  background-color: $primary;
+  padding: 0;
+  margin: 0;
+  min-height: 100vh;
+  position: relative;
+}
+
+.frostedLayer {
+  backdrop-filter: blur(15px);
+  background: rgba($primary-lightened, 0.3);
+  border-radius: 1em;
+}
+
+//text settings
+p, label {
+  font-family: 'Open Sans', sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 1em;
+  color: $secondary;
+}
+a {
+  font-family: 'Open Sans', sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-size: 1em;
+  font-style: italic;
+  color: $accent;
+  text-decoration: none;
+}
+strong {
+  font-weight: bold;
+}
+em {
+  font-family: 'Open Sans', sans-serif;
+  font-style: italic;
+}
+input, textarea {
+  color-scheme: dark;
+  font-family: 'Open Sans', sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 1em;
+  color: $secondary;
+  background: transparent;
+  border: 1px solid rgba($secondary, 0.5);
+  border-radius: 1em;
+  padding: 0.5em;
+  transition: border 0.25s;
+  &:-webkit-autofill,
+  &:-webkit-autofill:hover,
+  &:-webkit-autofill:focus {
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: $secondary;
+    caret-color: $secondary;
+  }
+  &:autofill {
+    background-color: transparent;
+    filter: none;
+  }
+}
+input:focus-visible, textarea:focus-visible {
+  border: 1px solid rgba($accent, 0.5);
+  outline: none;
+  box-shadow: none;
+}
+
+h1 {
+  font-family: 'Open Sans', sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: normal;
+  font-size: 2.5em;
+  color: $secondary;
+}
+h2 {
+  font-family: 'Open Sans', sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 650;
+  font-style: normal;
+  font-size: 2.25em;
+  color: $secondary;
+}
+h3 {
+  font-family: 'Open Sans', sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
+  font-size: 2em;
+  color: $secondary;
+}
+h4 {
+  font-family: 'Open Sans', sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 550;
+  font-style: normal;
+  font-size: 1.75em;
+  color: $secondary;
+}
+h5 {
+  font-family: 'Open Sans', sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+  font-size: 1.5em;
+  color: $secondary;
+}
+h6 {
+  font-family: 'Open Sans', sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 450;
+  font-style: normal;
+  font-size: 1.25em;
+  color: $secondary;
+}
+li::marker {
+  color: $accent;
+}
+li {
+  font-family: 'Open Sans', sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  color: $secondary;
+}
+
+//buttons
+button {
+  border: 1px solid $accent !important;
+  background: transparent;
+  border-radius: 1em;
+  padding: 0.25em 1em;
+  cursor: pointer;
+  color: $accent;
+  font-family: "Open Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+  font-size: 1.25em;
+  transition: background 0.5s, color 0.5s;
+}
+button:hover, button:focus, button:active {
+  background: $accent;
+  color: $primary;
+}
+
+//extra
+::-moz-selection {
+  color: $primary;
+  background: $secondary;
+}
+::selection {
+  color: $primary;
+  background: $secondary;
+}
+
+::-webkit-scrollbar {
+  width: 0.3em;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: $primary;
+  border-radius: 0.15em;
+}
+::-webkit-resizer {
+  display: none;
+}
+::-webkit-scrollbar-button {
+  display: none;
+}

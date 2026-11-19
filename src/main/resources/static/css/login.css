@@ -1,0 +1,19 @@
+#login-tile {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+  width: 100%;
+  height: 100vh;
+}
+#login-tile form {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: space-evenly;
+  padding: 2em;
+  gap: 1em;
+}
+#login-tile form button {
+  margin-top: 1em;
+}

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:fragment="sharedHead">
+        <!-- Meta -->
+        <meta charset="UTF-8">
+        <title>Agon - Code Battles</title>
+        <meta name="theme-color" content="#0b1e1e" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="_csrf" th:content="${_csrf.token}"/>
+        <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
+        <!-- Styles -->
+        <link rel="stylesheet" th:href="@{/css/main.css}"/>
+        <style>
+            html.scroll-hide *::-webkit-scrollbar-thumb {
+                background-color: rgb(223, 0, 0);
+            }
+            html.scroll-hide *::-webkit-scrollbar-track {
+                background-color: rgb(223, 0, 0);
+            }
+        </style>
+        <!-- Favicon
+        <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon/favicon-16x16.png">
+        <link rel="manifest" href="/images/favicon/site.webmanifest">
+        -->
+    </th:block>
+</head>
+<body>
+</body>
+</html>

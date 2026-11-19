@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:fragment="headScript">
+        <script defer src="/js/backgroundAnim.js"></script>
+        <link rel="stylesheet" th:href="@{/css/backgroundAnim.css}">
+    </th:block>
+</head>
+<body>
+<th:block th:fragment="bodyBlock">
+    <!-- Gradient Shader Flow — tuned on TinkerFX. A GPU fragment shader, zero dependencies. -->
+    <canvas id="gsf" style="display:block;background:#0b1e1e"></canvas>
+</th:block>
+</body>
+</html>

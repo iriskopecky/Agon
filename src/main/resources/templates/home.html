@@ -1,31 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Agon - Code Battles</title>
-    <!--<link rel="icon" type="image/x-icon" href="/images/condelulogo.ico">-->
-    <meta name="theme-color" content="#ffffff" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <!-- Scrollbar Styling
-    <style>
-        html.scroll-hide *::-webkit-scrollbar-thumb {
-            background-color: rgb(4.25, 4.25, 4.25);
-        }
-        html.scroll-hide *::-webkit-scrollbar-track {
-            background-color: rgb(4.25, 4.25, 4.25);
-        }
-    </style>
-    -->
-    <!-- Favicon
-    <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon/favicon-16x16.png">
-    <link rel="manifest" href="/images/favicon/site.webmanifest">
-    -->
+    <th:block th:replace="~{fragments/headCommon :: sharedHead}"></th:block>
+    <script defer src="/js/backgroundAnimHome.js"></script>
+    <link rel="stylesheet" th:href="@{/css/backgroundAnim.css}">
+    <link rel="stylesheet" th:href="@{/css/home.css}">
 </head>
 
 
 <body>
+
+<th:block th:replace="~{fragments/backgroundAnim :: bodyBlock}"></th:block>
+
+<!-- What we need here.
+
+Hero section - give the short name and tagline.
+Project brief - what the heck is Agon, the user-focused brief.
+Game format - spend some time describing the format of the game.
+Play formats - describe tournament, solo, etc.
+Technical notes - code must be in java, conforming to a specific interface, you upload a .java file, read more on the documentation (link)
+Creator - Talk about me a bit, don't try to hide that this is a portfolio project with a solo dev. Mention what inspired us to make this.
+Get started - after getting this far, give the user another easy create an account button.
+-->
+
+<div id="hero-section">
+    <div id="hero-content">
+        <h1>Welcome to <strong>Agon</strong></h1>
+        <h6>Where programming is the <em>only</em> path to victory.</h6>
+        <a href="/register"><button>Get Started</button></a>
+    </div>
+</div>
+
+<div id="project-brief-section">
+    <h1>Agon is a Programming Game</h1>
+    <div id="project-brief-tile" class="frostedLayer">
+        <p>With Agon, you program your player (Teras) beforehand, developing as simple or as complex a strategy as you want before putting it to the test.</p>
+        <p>Then you send your Teras into an arena to fight the Terata of other players.</p>
+        <p>To the winner goes the bragging rights (and leaderboard stats).</p>
+    </div>
+</div>
+
+<div id="game-format-section">
+
+</div>
+
+<div id="play-format-section">
+
+</div>
+
+<div id="technical-notes-section">
+
+</div>
+
+<div id="creator-section">
+
+</div>
+
+<div id="get-started-section">
+
+</div>
 
 </body>
 </html>

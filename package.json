@@ -1,0 +1,26 @@
+{
+  "name": "agon",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "css:build": "sass --no-source-map src/main/stylesheets:src/main/resources/static/css",
+    "css:watch": "sass --watch --no-source-map src/main/stylesheets:src/main/resources/static/css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iriskopecky/Agon.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/iriskopecky/Agon/issues"
+  },
+  "homepage": "https://github.com/iriskopecky/Agon#readme",
+  "devDependencies": {
+    "sass": "^1.108.2"
+  }
+}
