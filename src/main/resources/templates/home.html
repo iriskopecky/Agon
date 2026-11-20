@@ -2,15 +2,17 @@
 <html lang="en">
 <head>
     <th:block th:replace="~{fragments/headCommon :: sharedHead}"></th:block>
-    <script defer src="/js/backgroundAnimHome.js"></script>
+    <script defer src="/js/backgroundAnim.js"></script>
     <link rel="stylesheet" th:href="@{/css/backgroundAnim.css}">
     <link rel="stylesheet" th:href="@{/css/home.css}">
+    <th:block th:replace="~{fragments/mainHeader :: headScript}"></th:block>
 </head>
 
 
 <body>
 
 <th:block th:replace="~{fragments/backgroundAnim :: bodyBlock}"></th:block>
+<th:block th:replace="~{fragments/mainHeader :: bodyBlock}"></th:block>
 
 <!-- What we need here.
 

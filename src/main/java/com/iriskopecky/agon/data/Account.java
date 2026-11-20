@@ -1,10 +1,10 @@
 package com.iriskopecky.agon.data;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import org.springframework.security.crypto.password.PasswordEncoder;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Account {
@@ -14,6 +14,8 @@ public class Account {
     private Long id;
     private String hash;
     private String username;
+    @OneToMany(mappedBy = "owner")
+    private List<Teras> terata = new ArrayList<>();
 
     public Account(String username, String hash) {
         this.hash = hash;

@@ -46,7 +46,7 @@ public class CreateAccountController {
     public String registerPage(Principal user) {
         //ensure user is not already logged in
         if (user != null) {
-            return "redirect:/app"; //TODO replace with our actual main page
+            return "redirect:/browse";
         }
 
         return "register";
@@ -89,7 +89,7 @@ public class CreateAccountController {
         SecurityContextHolder.setContext(context);
         contextRepository.saveContext(context, request, response);
 
-        return Map.of("redirect", "/app");
+        return Map.of("redirect", "/browse");
     }
 
 

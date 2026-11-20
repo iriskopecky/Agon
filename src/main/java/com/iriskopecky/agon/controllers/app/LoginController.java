@@ -11,7 +11,7 @@ public class LoginController {
     @GetMapping("/login")
     public String login(Principal user) {
         if (user != null) {
-            return "redirect:/app"; //TODO replace with our main dashboard
+            return "redirect:/browse";
         }
 
         return "login";

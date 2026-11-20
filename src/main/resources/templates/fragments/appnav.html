@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:fragment="headScript">
+        <link rel="stylesheet" href="/css/appnav.css">
+    </th:block>
+</head>
+<body>
+<th:block th:fragment="bodyBlock">
+
+    <nav id="app-nav">
+        <a id="account-tile" href="/user"
+           th:classappend="${currentpage == 'user'} ? 'nav-link-current' : 'nav-link-visitable'">
+            <img src="https://placehold.co/400" style="max-width: 2em;max-height:2em;">
+            <h6 th:text="${username}"></h6>
+        </a>
+        <a href="/browse" th:classappend="${currentpage == 'browse'} ? 'nav-link-current' : 'nav-link-visitable'">
+            <i class="fa-solid fa-bars-staggered"></i>
+            Browse Terata</a>
+        <a href="/user/terata" th:classappend="${currentpage == 'userterata'} ? 'nav-link-current' : 'nav-link-visitable'">
+            <i class="fa-solid fa-pen-clip"></i>
+            Your Terata</a>
+        <a href="/user/create" th:classappend="${currentpage == 'create'} ? 'nav-link-current' : 'nav-link-visitable'">
+            <i class="fa-solid fa-circle-plus"></i>
+            Create a Teras</a>
+
+    </nav>
+
+</th:block>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <th:block th:replace="~{fragments/headCommon :: sharedHead}"></th:block>
+    <script defer src="/js/backgroundAnim.js"></script>
+    <link rel="stylesheet" th:href="@{/css/backgroundAnim.css}">
+    <link rel="stylesheet" th:href="@{/css/create.css}">
+    <th:block th:replace="~{fragments/mainHeader :: headScript}"></th:block>
+    <th:block th:replace="~{fragments/appnav :: headScript}"></th:block>
+</head>
+
+
+<body>
+
+<th:block th:replace="~{fragments/backgroundAnim :: bodyBlock}"></th:block>
+<th:block th:replace="~{fragments/appnav :: bodyBlock}"></th:block>
+<th:block th:replace="~{fragments/mainHeader :: bodyBlock}"></th:block>
+
+<div id="create-teras-content" class="frostedLayer appContent">
+
+</div>
+
+</body>
+</html>

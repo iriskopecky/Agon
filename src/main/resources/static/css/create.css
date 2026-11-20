@@ -1,0 +1,203 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wdth,wght@0,75..100,300..800;1,75..100,300..800&display=swap");
+* {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  background-color: #0b1e1e;
+  padding: 0;
+  margin: 0;
+  min-height: 100vh;
+  position: relative;
+}
+
+.frostedLayer {
+  backdrop-filter: blur(15px);
+  background: rgba(11, 30, 30, 0.3);
+  border-radius: 1em;
+}
+
+.appContent {
+  width: 75%;
+  min-height: 83vh;
+  margin-top: 12vh;
+  margin-bottom: 5vh;
+  position: absolute;
+  right: 5%;
+}
+
+p, label {
+  font-family: "Open Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 1em;
+  color: #f0f9f9;
+}
+
+a {
+  font-family: "Open Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-size: 1em;
+  font-style: italic;
+  color: #df0000;
+  text-decoration: none;
+}
+
+strong {
+  font-weight: bold;
+}
+
+em {
+  font-family: "Open Sans", sans-serif;
+  font-style: italic;
+}
+
+input, textarea {
+  color-scheme: dark;
+  font-family: "Open Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 1em;
+  color: #f0f9f9;
+  background: transparent;
+  border: 1px solid rgba(240, 249, 249, 0.5);
+  border-radius: 1em;
+  padding: 0.5em;
+  transition: border 0.25s;
+}
+input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:focus, textarea:-webkit-autofill, textarea:-webkit-autofill:hover, textarea:-webkit-autofill:focus {
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: #f0f9f9;
+  caret-color: #f0f9f9;
+}
+input:autofill, textarea:autofill {
+  background-color: transparent;
+  filter: none;
+}
+
+input:focus-visible, textarea:focus-visible {
+  border: 1px solid rgba(223, 0, 0, 0.5);
+  outline: none;
+  box-shadow: none;
+}
+
+h1 {
+  font-family: "Open Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: normal;
+  font-size: 2.5em;
+  color: #f0f9f9;
+}
+
+h2 {
+  font-family: "Open Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 650;
+  font-style: normal;
+  font-size: 2.25em;
+  color: #f0f9f9;
+}
+
+h3 {
+  font-family: "Open Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
+  font-size: 2em;
+  color: #f0f9f9;
+}
+
+h4 {
+  font-family: "Open Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 550;
+  font-style: normal;
+  font-size: 1.75em;
+  color: #f0f9f9;
+}
+
+h5 {
+  font-family: "Open Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+  font-size: 1.5em;
+  color: #f0f9f9;
+}
+
+h6 {
+  font-family: "Open Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 450;
+  font-style: normal;
+  font-size: 1.25em;
+  color: #f0f9f9;
+}
+
+li::marker {
+  color: #df0000;
+}
+
+li {
+  font-family: "Open Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  color: #f0f9f9;
+}
+
+button {
+  border: 1px solid #df0000 !important;
+  background: transparent;
+  border-radius: 1em;
+  padding: 0.25em 1em;
+  cursor: pointer;
+  color: #df0000;
+  font-family: "Open Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+  font-size: 1.25em;
+  transition: background 0.5s, color 0.5s;
+}
+
+button:hover, button:focus, button:active {
+  background: #df0000;
+  color: #0b1e1e;
+}
+
+::-moz-selection {
+  color: #0b1e1e;
+  background: #f0f9f9;
+}
+
+::selection {
+  color: #0b1e1e;
+  background: #f0f9f9;
+}
+
+::-webkit-scrollbar {
+  width: 0.3em;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #0b1e1e;
+  border-radius: 0.15em;
+}
+
+::-webkit-resizer {
+  display: none;
+}
+
+::-webkit-scrollbar-button {
+  display: none;
+}

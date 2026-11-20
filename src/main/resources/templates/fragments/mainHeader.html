@@ -2,11 +2,30 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <th:block th:fragment="headScript">
-
+        <link rel="stylesheet" href="/css/header.css">
     </th:block>
 </head>
 <body>
 <th:block th:fragment="bodyBlock">
+
+<header>
+    <a href="/" id="header-home">
+        <img src="https://placehold.co/400" style="max-width: 8vh;max-height:8vh;">
+    </a>
+
+    <div id="header-content">
+        <div id="header-links">
+            <a href="/documentation">Documentation</a>
+            <a href="/leaderboards">Leaderboards</a>
+        </div>
+        <div id="header-account-area">
+            <a href="/login" id="header-account-noaccount"><i class="fa-solid fa-circle-user"></i></a>
+            <div id="header-account-signedin" th:if="${false}">
+                <img src="https://placehold.co/400">
+            </div>
+        </div>
+    </div>
+</header>
 
 </th:block>
 </body>
