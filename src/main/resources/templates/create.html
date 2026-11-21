@@ -17,7 +17,20 @@
 <th:block th:replace="~{fragments/mainHeader :: bodyBlock}"></th:block>
 
 <div id="create-teras-content" class="frostedLayer appContent">
+    <form th:action="@{/user/create}"
+          method="post"
+          enctype="multipart/form-data">
 
+        <input type="text" name="name" placeholder="Teras name" required>
+
+        <textarea name="description" placeholder="Description" required></textarea>
+
+        <input type="checkbox" name="public" required>
+
+        <input type="file" name="source" accept=".java" required>
+
+        <button>Create</button>
+    </form>
 </div>
 
 </body>

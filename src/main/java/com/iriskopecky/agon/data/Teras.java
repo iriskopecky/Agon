@@ -16,13 +16,17 @@ public class Teras {
     private Account owner;
     private boolean publicFacing;
     private String name;
+    private String description;
     private Instant creationDate;
+    private String fileKey;
 
-    public Teras(Account owner, String name) {
+    public Teras(Account owner, String name, String description, boolean publicFacing, String fileKey) {
         this.owner = owner;
         this.name = name;
-        this.publicFacing = false;
+        this.description = description;
+        this.publicFacing = publicFacing;
         this.creationDate = Instant.now();
+        this.fileKey = fileKey;
     }
 
     public Teras() {}
@@ -53,6 +57,22 @@ public class Teras {
 
     public Instant getCreationDate() {
         return creationDate;
+    }
+
+    public String getFileKey() {
+        return fileKey;
+    }
+
+    public void setFileKey(String fileKey) {
+        this.fileKey = fileKey;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public static class TerasCreationComparator implements Comparator<Teras> {

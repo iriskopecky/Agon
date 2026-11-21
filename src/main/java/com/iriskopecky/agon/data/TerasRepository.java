@@ -7,4 +7,5 @@ import java.util.Optional;
 
 public interface TerasRepository extends CrudRepository<Teras, Long> {
     List<Teras> findAllByPublicFacing(boolean publicFacing);
+    List<Teras> findAllByName(String name);
 }

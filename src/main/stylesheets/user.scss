@@ -1,5 +1,11 @@
 @use 'constants' as vars;
 
 #user-content {
-
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: start;
+  gap: 1em;
+  min-height: 80vh;
+  padding-top: 3vh;
 }
