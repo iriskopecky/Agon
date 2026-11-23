@@ -201,3 +201,45 @@ button:hover, button:focus, button:active {
 ::-webkit-scrollbar-button {
   display: none;
 }
+
+#create-teras-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#create-teras-content form {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: start;
+  padding-top: 3em;
+  gap: 2em;
+  width: 80%;
+  height: 100%;
+}
+#create-teras-content form #create-teras-top {
+  width: 80%;
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+  justify-content: space-between;
+}
+#create-teras-content form .create-input-label {
+  display: flex;
+  flex-flow: row;
+  gap: 1em;
+  align-items: center;
+  justify-content: center;
+}
+#create-teras-content form .create-textarea-label {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5em;
+  width: 100%;
+}
+#create-teras-content form .create-textarea-label textarea {
+  width: 80%;
+  height: 6em;
+}

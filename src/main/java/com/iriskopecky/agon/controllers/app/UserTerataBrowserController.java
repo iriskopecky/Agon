@@ -2,6 +2,7 @@ package com.iriskopecky.agon.controllers.app;
 
 import com.iriskopecky.agon.data.Account;
 import com.iriskopecky.agon.data.AccountRepository;
+import com.iriskopecky.agon.data.Teras;
 import com.iriskopecky.agon.data.TerasRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
@@ -10,6 +11,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.security.Principal;
+import java.time.Instant;
+import java.util.List;
 
 @Controller
 public class UserTerataBrowserController {
@@ -29,6 +32,10 @@ public class UserTerataBrowserController {
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.FORBIDDEN, "Account not available."));
         model.addAttribute("username", account.getUsername());
 
+        List<Teras> ownedTerata = account.getTerata();
+        model.addAttribute("terata", ownedTerata);
+
         return "userterata";
     }
+
 }

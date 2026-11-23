@@ -27,4 +27,10 @@ public class Account {
     public Long getId() {return id;}
     public String getUsername() {return username;}
     public String getHash() {return hash;}
+    public List<Teras> getTerata() {
+        return terata;
+    }
+    public void setTerata(List<Teras> terata) {
+        this.terata = terata;
+    }
 }

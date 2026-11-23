@@ -21,13 +21,27 @@
           method="post"
           enctype="multipart/form-data">
 
-        <input type="text" name="name" placeholder="Teras name" required>
+        <div id="create-teras-top">
+            <div class="create-input-label">
+                <label for="create-name">Name</label>
+                <input type="text" name="name" placeholder="Teras name" required id="create-name">
+            </div>
 
-        <textarea name="description" placeholder="Description" required></textarea>
+            <div class="create-input-label">
+                <label for="create-ispublic">Should this Teras be public?</label>
+                <input type="checkbox" name="public" id="create-ispublic">
+            </div>
+        </div>
 
-        <input type="checkbox" name="public" required>
+        <div class="create-textarea-label">
+            <label for="create-desc">Description</label>
+            <textarea name="description" placeholder="Description" required id="create-desc"></textarea>
+        </div>
 
-        <input type="file" name="source" accept=".java" required>
+        <div class="create-input-label">
+            <label for="create-file">File</label>
+            <input type="file" name="source" accept=".java" required id="create-file">
+        </div>
 
         <button>Create</button>
     </form>

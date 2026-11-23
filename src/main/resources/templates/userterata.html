@@ -17,7 +17,22 @@
 <th:block th:replace="~{fragments/mainHeader :: bodyBlock}"></th:block>
 
 <div id="user-terata-content" class="frostedLayer appContent">
-
+    <div class="user-terata-tile" th:each="teras:${terata}">
+        <h6 th:text="${teras.getName()}"></h6>
+        <div class="user-terata-tile-half">
+            <div class="user-terata-visible" th:if="${teras.isPublicFacing()}">
+                <i class="fa-solid fa-eye"></i>
+                <p>Public</p>
+            </div>
+            <div class="user-terata-hidden" th:if="${!teras.isPublicFacing()}">
+                <i class="fa-solid fa-lock"></i>
+                <p>Private</p>
+            </div>
+            <a class="user-terata-edit-link" th:href="${'/user/teras/' + teras.getId() + '/edit'}">
+                <i class="fa-solid fa-pen-to-square"></i>
+            </a>
+        </div>
+    </div>
 </div>
 
 </body>

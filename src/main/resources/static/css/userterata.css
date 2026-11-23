@@ -201,3 +201,49 @@ button:hover, button:focus, button:active {
 ::-webkit-scrollbar-button {
   display: none;
 }
+
+#user-terata-content {
+  display: flex;
+  flex-flow: column;
+  gap: 1rem;
+}
+#user-terata-content .user-terata-tile {
+  width: 80%;
+  padding-left: 10%;
+  padding-right: 10%;
+  height: 4em;
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+  justify-content: space-between;
+}
+#user-terata-content .user-terata-tile .user-terata-tile-half {
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+  gap: 2em;
+}
+#user-terata-content .user-terata-tile .user-terata-tile-half .user-terata-hidden, #user-terata-content .user-terata-tile .user-terata-tile-half .user-terata-visible {
+  border-radius: 1em;
+  padding: 0.25em 1em;
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5em;
+  width: 6em;
+}
+#user-terata-content .user-terata-tile .user-terata-tile-half .user-terata-hidden svg, #user-terata-content .user-terata-tile .user-terata-tile-half .user-terata-visible svg {
+  color: #f0f9f9;
+}
+#user-terata-content .user-terata-tile .user-terata-tile-half .user-terata-hidden {
+  background: rgba(255, 0, 0, 0.5);
+  border: 1px solid red;
+}
+#user-terata-content .user-terata-tile .user-terata-tile-half .user-terata-visible {
+  background: rgba(0, 128, 0, 0.5);
+  border: 1px solid green;
+}
+#user-terata-content .user-terata-tile .user-terata-tile-half .user-terata-edit-link {
+  font-size: 2em;
+}

@@ -18,6 +18,31 @@
 
 <div id="edit-teras-content" class="frostedLayer appContent">
 
+    <form th:action="@{/user/teras/{id}/edit(id=${terasId})}"
+          method="post">
+
+        <div id="edit-teras-top">
+            <div class="edit-input-label">
+                <label for="edit-name">Name</label>
+                <input type="text" name="name" placeholder="Teras name" required th:value="${terasName}" id="edit-name">
+            </div>
+
+
+            <div class="edit-input-label">
+                <label for="edit-ispublic">Should this Teras be public?</label>
+                <input type="checkbox" name="public" th:checked="${terasIsPublic}" id="edit-ispublic">
+            </div>
+        </div>
+
+        <div class="edit-textarea-label">
+            <label for="edit-desc">Description</label>
+            <textarea name="description" placeholder="Description" required th:text="${terasDesc}" id="edit-desc"></textarea>
+        </div>
+
+
+        <button>Save Edits</button>
+    </form>
+
 </div>
 
 </body>

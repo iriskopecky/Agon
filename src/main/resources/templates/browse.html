@@ -17,7 +17,11 @@
 <th:block th:replace="~{fragments/mainHeader :: bodyBlock}"></th:block>
 
 <div id="browse-content" class="frostedLayer appContent">
-
+    <a class="teras-tile" th:each="teras:${terata}" th:href="${'/teras/' + teras.getId()}">
+        <h6 th:text="${teras.getName()}"></h6>
+        <p th:text="${teras.getOwner().getUsername()}"></p>
+        <p th:text="${#temporals.format(teras.getCreationDate(), 'MMM d, yyyy', 'UTC')}"></p>
+    </a>
 </div>
 
 </body>

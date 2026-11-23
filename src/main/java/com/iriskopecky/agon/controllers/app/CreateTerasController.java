@@ -53,8 +53,8 @@ public class CreateTerasController {
      * @return JSON response.
      */
     @PostMapping("/user/create")
-    public Map<String, String> createTeras(Principal user, @RequestParam String name, @RequestParam(defaultValue = "") String description,
-                                           @RequestParam(defaultValue = "false") boolean isPublic, @RequestParam("source") MultipartFile file) {
+    public String createTeras(Principal user, @RequestParam String name, @RequestParam(defaultValue = "") String description,
+                                           @RequestParam(defaultValue = "false", name="public") boolean isPublic, @RequestParam("source") MultipartFile file) {
         //ensure the user is authenticated
         Account account = accountRepository.findAccountByUsername(user.getName())
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.FORBIDDEN, "Account not available."));
@@ -70,8 +70,6 @@ public class CreateTerasController {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Failed to create Teras"); //TODO replace with richer error handling/reporting.
         }
 
-        return null;
-
-
+        return "redirect:/user/terata";
     }
 }

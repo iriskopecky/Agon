@@ -1,5 +1,24 @@
 @use 'constants' as vars;
 
 #browse-content {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: start;
+  padding-top: 2em;
+
+  .teras-tile {
+    width: 80%;
+    padding: 0.5em 10%;
+    height: 2em;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    align-items: center;
+    transition: background 0.25s;
+    border-radius: 1em;
+  }
+  .teras-tile:hover {
+    background: rgba(vars.$primary, 0.6);
+  }
 
 }

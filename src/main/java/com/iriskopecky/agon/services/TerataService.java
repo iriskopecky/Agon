@@ -93,7 +93,7 @@ public class TerataService {
 
             //compile the java file.
             result = Compiler.compile(outputDir, sourceFile);
-        } catch (IOException _) {
+        } catch (IOException e) {
             delete = true;
         }
 
