@@ -7,7 +7,7 @@ import java.util.concurrent.TimeUnit;
 
 public class Compiler {
 
-    private static final Path API_JAR = Path.of("AgonRunner/Teras.jar");
+    private static final Path API_JAR = Path.of("AgonAPI/target/AgonAPI-0.0.1-SNAPSHOT.jar");
     private static final int MAX_WAIT_SECONDS = 10;
 
     /**
