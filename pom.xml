@@ -11,6 +11,7 @@
     <groupId>com.iriskopecky</groupId>
     <artifactId>Agon</artifactId>
     <version>0.0.1-SNAPSHOT</version>
+    <packaging>pom</packaging>
     <name>Agon</name>
     <description>Agon</description>
     <url/>
@@ -20,6 +21,10 @@
     <developers>
         <developer/>
     </developers>
+    <modules>
+        <module>AgonAPI</module>
+        <module>AgonRunner</module>
+    </modules>
     <scm>
         <connection/>
         <developerConnection/>
@@ -78,6 +83,11 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-validation</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.iriskopecky</groupId>
+            <artifactId>AgonAPI</artifactId>
+            <version>1.0-SNAPSHOT</version>
         </dependency>
     </dependencies>
 
