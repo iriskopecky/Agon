@@ -1,6 +1,10 @@
-package com.iriskopecky.agon.game;
+package com.iriskopecky.agon.game.logic;
+
+import com.iriskopecky.agon.data.Teras;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 
 /**
@@ -26,6 +30,17 @@ public class GameBoard {
                 this.board[i][j] = new Position(i, j, config);
             }
         }
+    }
+
+    /**
+     * Gets a random position on the board.
+     * @param seededRandom The random to use for repeatability.
+     * @return A random position on the board.
+     */
+    public Position getRandomPos(Random seededRandom) {
+        int x = seededRandom.nextInt(width);
+        int y = seededRandom.nextInt(height);
+        return board[x][y];
     }
 
     /**
@@ -61,6 +76,8 @@ public class GameBoard {
         return null;
     }
 
+    public int getWidth() {return width;}
+    public int getHeight() {return height;}
 
     /**
      * A class representing one coordinate on the board, keeping track of all the information associated with this coordinate.
@@ -68,7 +85,8 @@ public class GameBoard {
     public class Position {
         private Coord position;
         private ArrayList<ServerTeras> occupyingTeras;
-        private boolean isResourceGeneratorTile;
+        private boolean isPortentGeneratorTile;
+        private int portents;
 
         /**
          * Create a new gamePos representing one position on the board.
@@ -79,14 +97,15 @@ public class GameBoard {
         public Position(int x, int y, GameConfig config) {
             occupyingTeras = new ArrayList<>();
             position = new Coord(x, y, config);
-            isResourceGeneratorTile = false;
+            isPortentGeneratorTile = false;
+            portents = 0;
         }
 
         /**
          * Sets resource generator tile value to newVal
          */
-        public void setIsResourceGeneratorTile(boolean newVal) {
-            this.isResourceGeneratorTile = newVal;
+        public void setIsPortentGeneratorTile(boolean newVal) {
+            this.isPortentGeneratorTile = newVal;
         }
 
         /**
@@ -125,6 +144,43 @@ public class GameBoard {
          */
         public Coord getCoords() {
             return position;
+        }
+
+        public int getPortents() {return portents;}
+
+        public void addPortent() {portents++;}
+
+        public void removePortent() {portents--;}
+
+        public ArrayList<ServerTeras> getOccupyingTeras() {return occupyingTeras;}
+
+        public int getDiffX(Position other, int max) {
+            int oX = other.getCoords().getX();
+            int tX = this.getCoords().getX();
+            int formerX = Math.min(oX, tX);
+            int latterX = Math.max(oX, tX);
+            int directDist = Math.abs(oX - tX);
+            int indirectDist = (max - latterX) + formerX;
+            return Math.min(directDist, indirectDist);
+        }
+
+        public int getDiffY(Position other, int max) {
+            int oY = other.getCoords().getY();
+            int tY = this.getCoords().getY();
+            int formerY = Math.min(oY, tY);
+            int latterY = Math.max(oY, tY);
+            int directDist = Math.abs(oY - tY);
+            int indirectDist = (max - latterY) + formerY;
+            return Math.min(directDist, indirectDist);
+        }
+
+        /**
+         * Returns the maximum of the distances along each component axis, used in range calculations.
+         * @param other The other coord to compare to.
+         * @return The range distance between these coords.
+         */
+        public int getComponentDistance(Position other, int width, int height) {
+            return Math.max(getDiffX(other, width), getDiffY(other, height));
         }
     }
 }

@@ -1,18 +1,19 @@
-package com.iriskopecky.agon.game;
+package com.iriskopecky.agon.game.logic;
 
 
 import java.util.ArrayList;
+import java.util.Random;
 
-public class ResourceGenerator {
+public class PortentGenerator {
 
     private GameBoard.Position position;
     private int ticksRemaining;
     private int radius;
 
-    public ResourceGenerator(GameBoard.Position pos, GameBoard board, GameConfig config) {
+    public PortentGenerator(GameBoard.Position pos, GameBoard board, GameConfig config) {
         this.position = pos;
-        this.radius = config.resourceGeneratorRadius();
-        this.ticksRemaining = config.resourceGeneratorDuration();
+        this.radius = config.portentGeneratorRadius();
+        this.ticksRemaining = config.portentGeneratorDuration();
     }
 
     /**
@@ -39,5 +40,18 @@ public class ResourceGenerator {
         }
 
         return output;
+    }
+
+    /**
+     * Randomly distribute portents to this generator's territory.
+     * @param generatorTerritory The list of positions owned by this generator.
+     * @param portents The number of portents to randomly assign.
+     * @param seededRandom The random number generator to use.
+     */
+    public void generatePortents(ArrayList<GameBoard.Position> generatorTerritory, int portents, Random seededRandom) {
+        for (int i = 0; i < portents; i++) {
+            int index = seededRandom.nextInt(generatorTerritory.size());
+            generatorTerritory.get(index).addPortent();
+        }
     }
 }

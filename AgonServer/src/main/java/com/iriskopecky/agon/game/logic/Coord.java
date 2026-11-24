@@ -1,4 +1,4 @@
-package com.iriskopecky.agon.game;
+package com.iriskopecky.agon.game.logic;
 
 public class Coord {
 

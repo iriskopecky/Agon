@@ -18,9 +18,9 @@ public abstract class PlayerTeras {
 
     public abstract void fightResult(FightResult result);
 
-    public abstract Purchase spendResources(UpgradeState upgradeState, ResourceState resourceState);
+    public abstract Purchase spendResources(UpgradeState upgradeState, PortentState portentState);
 
-    public abstract boolean shouldMate(TerasView ally, ResourceState resourceState);
+    public abstract boolean shouldMate(TerasView ally, PortentState portentState);
 
     public abstract Move move();
 }
