@@ -1,12 +1,20 @@
 package com.iriskopecky.agon.game.logic;
 
-import com.iriskopecky.*;
 import com.iriskopecky.agon.data.Teras;
+import com.iriskopecky.agon.game.runners.RunnerBridge;
+import com.iriskopecky.util.*;
+import tools.jackson.databind.json.JsonMapper;
+
+import java.util.UUID;
 
 /**
  * This class represents the server view (method of truth) of every PlayerTeras.
  */
 public class ServerTeras {
+
+    private RunnerBridge bridge;
+    private String runnerId;
+    private JsonMapper mapper;
 
     private int maxHealth;
     private int currentHealth;
@@ -23,7 +31,14 @@ public class ServerTeras {
     private int baseMeleeDamage;
     private int currentMeleeDamage;
 
-    public ServerTeras(GameConfig config, Teras templateTeras, Coord startingPos) {
+    public ServerTeras(GameConfig config, Teras templateTeras, Coord startingPos, RunnerBridge bridge) {
+        //handle messaging the runner
+        this.bridge = bridge;
+        this.runnerId = UUID.randomUUID().toString();
+        mapper = JsonMapper.builder().build();
+        bridge.sendMessage(new Message(runnerId, Message.Command.MAKE, null));
+
+        //prep defaults
         this.maxHealth = config.startingHealth();
         this.currentHealth = maxHealth;
         this.pos = startingPos;
@@ -40,39 +55,56 @@ public class ServerTeras {
     }
 
     public void initialize(InitialState initialState) {
-
+        bridge.sendMessage(new Message(runnerId, Message.Command.INIT, initialState));
     }
 
     public void scanResults(Scan scan) {
-
+        bridge.sendMessage(new Message(runnerId, Message.Command.SCAN, scan));
     }
 
     public ActionPair decideActions() {
-        return null;
+        Response response = bridge.sendMessage(new Message(runnerId, Message.Command.DECIDE_ACTIONS, null));
+        if (response == null || response.response() != Response.ResponseType.ACTION_DECISION) return null;
+        return mapper.convertValue(response.data(), ActionPair.class);
+
     }
 
     public Attack attack(TerasView defender) {
-        return null;
+        Response response = bridge.sendMessage(new Message(runnerId, Message.Command.ATTACK, defender));
+        if (response == null || response.response() != Response.ResponseType.ATTACK) return null;
+        return mapper.convertValue(response.data(), Attack.class);
     }
 
     public Defense defend(TerasView attacker) {
-        return null;
+        Response response = bridge.sendMessage(new Message(runnerId, Message.Command.DEFEND, attacker));
+        if (response == null || response.response() != Response.ResponseType.DEFENSE) return null;
+        return mapper.convertValue(response.data(), Defense.class);
     }
 
     public void fightResult(FightResult result) {
-
+        bridge.sendMessage(new Message(runnerId, Message.Command.FIGHT_RESULT, result));
     }
 
     public Purchase spendResources(UpgradeState upgradeState, PortentState portentState) {
-        return null;
+        Response response = bridge.sendMessage(new Message(runnerId, Message.Command.SPEND_RESOURCES, new Pair<>(upgradeState, portentState)));
+        if (response == null || response.response() != Response.ResponseType.PURCHASE) return null;
+        return mapper.convertValue(response.data(), Purchase.class);
     }
 
     public boolean shouldMate(TerasView ally, PortentState portentState) {
-        return false;
+        Response response = bridge.sendMessage(new Message(runnerId, Message.Command.SHOULD_MATE, new Pair<>(ally, portentState)));
+        if (response == null || response.response() != Response.ResponseType.WANTS_TO_MATE) return false;
+        return mapper.convertValue(response.data(), Boolean.class);
     }
 
     public Move move() {
-        return null;
+        Response response = bridge.sendMessage(new Message(runnerId, Message.Command.MOVE, null));
+        if (response == null || response.response() != Response.ResponseType.MOVE) return null;
+        return mapper.convertValue(response.data(), Move.class);
+    }
+
+    public void tickEndState(TickEndState state) {
+        bridge.sendMessage(new Message(runnerId, Message.Command.TICK_END_STATE, state));
     }
 
     public void processRegen() {
@@ -94,6 +126,17 @@ public class ServerTeras {
     public boolean applyDamage(int damage) {
         currentHealth -= damage;
         return currentHealth <= 0;
+    }
+
+
+    public void tickDownViewDist() {
+        if (boostedViewDistDuration > 0) {
+            boostedViewDistDuration--;
+        }
+
+        if (boostedViewDistDuration == 0) {
+            currentViewDist = baseViewDist;
+        }
     }
 
 
@@ -147,4 +190,8 @@ public class ServerTeras {
     public int getCurrentMeleeDamage() {
         return currentMeleeDamage;
     }
+
+    public int getMaxHealth() {return maxHealth;}
+
+    public int getCurrentRegen() {return currentRegen;}
 }

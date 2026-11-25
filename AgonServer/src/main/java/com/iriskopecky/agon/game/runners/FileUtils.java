@@ -1,4 +1,4 @@
-package com.iriskopecky.agon.game.files;
+package com.iriskopecky.agon.game.runners;
 
 import java.io.IOException;
 import java.nio.file.FileVisitResult;

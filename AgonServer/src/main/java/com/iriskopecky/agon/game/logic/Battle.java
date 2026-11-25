@@ -1,17 +1,17 @@
 package com.iriskopecky.agon.game.logic;
 
-import com.iriskopecky.*;
 import com.iriskopecky.agon.data.Teras;
-import com.iriskopecky.agon.game.Pair;
+import com.iriskopecky.util.Pair;
 
 import java.util.*;
 
-import static com.iriskopecky.ActionPair.SecondaryAction.*;
-import static com.iriskopecky.ActionPair.PrimaryAction.*;
+import static com.iriskopecky.util.ActionPair.SecondaryAction.*;
+import static com.iriskopecky.util.ActionPair.PrimaryAction.*;
 import com.iriskopecky.agon.game.logic.GameBoard.Position;
-import com.iriskopecky.Attack.AttackType;
-import com.iriskopecky.Defense.DefenseType;
-import org.springframework.security.core.parameters.P;
+import com.iriskopecky.util.*;
+import com.iriskopecky.util.Attack.AttackType;
+import com.iriskopecky.util.Defense.DefenseType;
+import com.iriskopecky.agon.game.runners.RunnerBridge;
 
 public class Battle {
 
@@ -27,11 +27,11 @@ public class Battle {
      * Initialize the board to be ready for a fight.
      * @param config The game config for this battle.
      */
-    public Battle(GameConfig config) {
+    public Battle(GameConfig config, ArrayList<RunnerBridge> bridges) {
         this.config = config;
         this.board = new GameBoard(config);
         this.seededRandom = new Random(config.gameSeed());
-        generateTeras();
+        generateTeras(bridges);
         spawnPortentGenerator(false);
     }
 
@@ -66,22 +66,27 @@ public class Battle {
 
         //process regens
         processRegens(parsedActions);
+
         //process resource collection
         processPortentCollection(parsedActions);
+
         //process scan range boost
         processScanRangeBoost(parsedActions);
 
         //move stage
+        processMoves(parsedActions);
 
         //reproduction stage
-        //TODO ensure nothing killed does this.
+        //TODO implement, not necessary for preliminary tests
 
         //spend resource check stage
-        //TODO don't do this for killed things
+        //TODO implement, not necessary for preliminary tests
 
         //tick down duration effects
+        tickDownDurations();
 
         //notify of updated state (ie globaldata, portents, etc)
+        notifyState();
     }
 
     /**
@@ -267,21 +272,83 @@ public class Battle {
     }
 
     /**
+     * Process all moves queued.
+     * @param wrapper The action wrapper for this tick.
+     */
+    private void processMoves(ActionWrapper wrapper) {
+        //ensure move orders are random so that collision wins are random
+        Collections.shuffle(wrapper.terasPendingMove(), seededRandom);
+
+        //for each teras to move, process it
+        for (ServerTeras teras : wrapper.terasPendingMove()) {
+            Move move = teras.move();
+            //if the user gave an invalid move, skip their turn
+            if (move == null || move.moveDirection() == null) {
+                continue;
+            }
+
+            Position oldPos = board.getGamePos(teras.getPos().getX(), teras.getPos().getY());
+            Position newPos = oldPos.offset(move.moveDirection(), 1, board);
+
+            //if the user has tried to move into an occupied space, disallow it.
+            if (newPos.isPositionOccupied()) {
+                continue;
+            }
+
+            //move the teras.
+            oldPos.getOccupyingTeras().remove(teras);
+            newPos.getOccupyingTeras().add(teras);
+            teras.setPos(newPos.getCoords());
+        }
+    }
+
+    /**
+     * Ensure all duration-based effects are decreased appropriately
+     */
+    private void tickDownDurations() {
+        for (ServerTeras teras : players) {
+            teras.tickDownViewDist();
+        }
+    }
+
+    /**
+     * Notify all terata of their state at the end of this tick.
+     */
+    private void notifyState() {
+        for (ServerTeras teras : players) {
+            int portents = globalData.get(teras.getTemplateId()).portents;
+            int health = teras.getCurrentHealth();
+            int maxHealth = teras.getMaxHealth();
+            int viewDist = teras.getCurrentViewDist();
+            int meleeDamage = teras.getCurrentMeleeDamage();
+            int meleeRange = teras.getCurrentMeleeRange();
+            int regenAmount = teras.getCurrentRegen();
+            TickEndState state = new TickEndState(portents, health, maxHealth, viewDist, meleeDamage, meleeRange, regenAmount);
+            teras.tickEndState(state);
+        }
+    }
+
+    /**
      * Generate teras on the game board
      */
-    private void generateTeras() {
+    private void generateTeras(ArrayList<RunnerBridge> bridges) {
         players = new ArrayList<>();
         //for every teras type, generate serverTeras
         for (int terasIndex = 0; terasIndex < config.competitors().size(); terasIndex++) {
             Teras templateTeras = config.competitors().get(terasIndex);
             int numToGenerate = config.competitorCount().get(terasIndex);
+            RunnerBridge bridge = bridges.get(terasIndex);
             //generate every teras instance
             for (int i = 0; i < numToGenerate; i++) {
                 Position pos = board.findRandomUnoccupiedPos(seededRandom);
                 if (pos != null) {
-                    ServerTeras teras = new ServerTeras(config, templateTeras, pos.getCoords());
+                    ServerTeras teras = new ServerTeras(config, templateTeras, pos.getCoords(), bridge);
                     players.add(teras);
                     pos.getOccupyingTeras().add(teras);
+                    teras.initialize(new InitialState(config.startingHealth(), config.baseMeleeDamage(),
+                            config.defaultMeleeRange(), config.defaultViewDist(), config.startingPortents(),
+                            config.width(), config.height(), config.competitors().size() - 1,
+                            config.baseRegen(), config.attackCritMult(), config.defenseCritMult()));
                 }
             }
         }
@@ -289,7 +356,7 @@ public class Battle {
         globalData = new HashMap<>();
         //prep the global data map
         for (Teras teras : config.competitors()) {
-            globalData.put(teras.getId(), new TerasGlobalData());
+            globalData.put(teras.getId(), new TerasGlobalData(config.startingPortents()));
         }
     }
 

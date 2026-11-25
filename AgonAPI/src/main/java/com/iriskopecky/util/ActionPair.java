@@ -1,4 +1,4 @@
-package com.iriskopecky;
+package com.iriskopecky.util;
 
 /**
  * Represent what two actions a teras wants to take this tick.

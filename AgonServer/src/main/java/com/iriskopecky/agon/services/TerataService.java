@@ -3,8 +3,8 @@ package com.iriskopecky.agon.services;
 import com.iriskopecky.agon.data.Account;
 import com.iriskopecky.agon.data.Teras;
 import com.iriskopecky.agon.data.TerasRepository;
-import com.iriskopecky.agon.game.files.Compiler;
-import com.iriskopecky.agon.game.files.FileUtils;
+import com.iriskopecky.agon.game.runners.Compiler;
+import com.iriskopecky.agon.game.runners.FileUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -127,9 +127,10 @@ public class TerataService {
 
         //get the file key
         String fileKey = terasDir.getFileName().toString();
+        String fileName = source.getOriginalFilename().split(".")[0];
 
         //create the teras
-        Teras teras = new Teras(owner, name, description, isPublic, fileKey);
+        Teras teras = new Teras(owner, name, description, isPublic, fileKey, fileName);
         terasRepository.save(teras);
         return teras;
     }

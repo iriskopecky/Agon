@@ -1,8 +1,8 @@
 package com.iriskopecky.agon.game.logic;
 
-import com.iriskopecky.ActionPair;
-import com.iriskopecky.Scan;
-import com.iriskopecky.TerasView;
+import com.iriskopecky.util.ActionPair;
+import com.iriskopecky.util.Scan;
+import com.iriskopecky.util.TerasView;
 
 import java.util.ArrayList;
 

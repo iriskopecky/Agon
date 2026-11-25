@@ -6,6 +6,7 @@ target/
 AgonServer/secrets.properties
 node_modules/
 uploads/
+/AgonCampaign/
 
 ### STS ###
 .apt_generated

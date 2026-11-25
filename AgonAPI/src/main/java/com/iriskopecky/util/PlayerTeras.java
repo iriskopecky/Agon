@@ -1,4 +1,4 @@
-package com.iriskopecky;
+package com.iriskopecky.util;
 
 /**
  * This class represents the contract of methods that all terata must implement,
@@ -23,4 +23,6 @@ public abstract class PlayerTeras {
     public abstract boolean shouldMate(TerasView ally, PortentState portentState);
 
     public abstract Move move();
+
+    public abstract void tickEndState(TickEndState state);
 }

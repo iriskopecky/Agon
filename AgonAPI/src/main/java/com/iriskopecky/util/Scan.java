@@ -1,4 +1,4 @@
-package com.iriskopecky;
+package com.iriskopecky.util;
 
 import java.util.ArrayList;
 

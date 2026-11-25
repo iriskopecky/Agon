@@ -1,4 +1,4 @@
-package com.iriskopecky;
+package com.iriskopecky.util;
 
 public record UpgradeState() {
 }

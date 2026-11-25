@@ -1,11 +1,8 @@
 package com.iriskopecky.agon.game.logic;
 
-import com.iriskopecky.agon.data.Teras;
-
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Random;
+import com.iriskopecky.util.Move.Direction;
 
 /**
  * A class representing the game board for one battle.
@@ -181,6 +178,25 @@ public class GameBoard {
          */
         public int getComponentDistance(Position other, int width, int height) {
             return Math.max(getDiffX(other, width), getDiffY(other, height));
+        }
+
+        public Position offset(Direction direction, int distance, GameBoard board) {
+            int xOffset = 0;
+            int yOffset = 0;
+            if (direction == Direction.EAST || direction == Direction.SOUTHEAST || direction == Direction.NORTHEAST) {
+                xOffset = distance;
+            }
+            if (direction == Direction.WEST || direction == Direction.SOUTHWEST || direction == Direction.NORTHWEST) {
+                xOffset = -1 * distance;
+            }
+            if (direction == Direction.NORTH || direction == Direction.NORTHWEST || direction == Direction.NORTHEAST) {
+                yOffset = -1 * distance;
+            }
+            if (direction == Direction.SOUTH || direction == Direction.SOUTHWEST || direction == Direction.SOUTHEAST) {
+                yOffset = distance;
+            }
+
+            return board.getGamePos(getCoords().getX() + xOffset, getCoords().getY() + yOffset);
         }
     }
 }

@@ -4,7 +4,7 @@ public class TerasGlobalData {
 
     public int portents;
 
-    public TerasGlobalData() {
-        portents = 0;
+    public TerasGlobalData(int startingPortents) {
+        portents = startingPortents;
     }
 }

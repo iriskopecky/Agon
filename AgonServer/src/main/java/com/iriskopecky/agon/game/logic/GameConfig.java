@@ -23,5 +23,6 @@ public record GameConfig(
         int baseRegen,
         int baseMeleeDamage,
         float attackCritMult,
-        float defenseCritMult
+        float defenseCritMult,
+        int startingPortents
 ) {}

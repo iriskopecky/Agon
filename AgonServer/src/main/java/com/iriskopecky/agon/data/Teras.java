@@ -19,14 +19,16 @@ public class Teras {
     private String description;
     private Instant creationDate;
     private String fileKey;
+    private String fileName;
 
-    public Teras(Account owner, String name, String description, boolean publicFacing, String fileKey) {
+    public Teras(Account owner, String name, String description, boolean publicFacing, String fileKey, String fileName) {
         this.owner = owner;
         this.name = name;
         this.description = description;
         this.publicFacing = publicFacing;
         this.creationDate = Instant.now();
         this.fileKey = fileKey;
+        this.fileName = fileName;
     }
 
     public Teras() {}
@@ -74,6 +76,8 @@ public class Teras {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    public String getFileName() {return fileName;}
 
     public static class TerasCreationComparator implements Comparator<Teras> {
         @Override
